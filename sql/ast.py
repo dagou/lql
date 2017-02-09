@@ -35,7 +35,18 @@ class IdentifierNode(AST):
         return '{!r}'.format(self.value)
 
 
-class BinaryOpNode(AST):
+class UnaryOpNode(AST):
+    """Unary operator node."""
+
+    def __init__(self, expr, op):
+        self.expr = expr
+        self.token = self.op = op
+
+    def __repr__(self):
+        return '{!r}: ({!r})'.format(self.op.value, self.expr)
+
+
+class BinOpNode(AST):
     def __init__(self, left, op, right):
         self.left = left
         self.token = self.op = op
